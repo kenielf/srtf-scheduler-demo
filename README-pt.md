@@ -59,6 +59,6 @@ Para executar, use `./target/demo`.
 É possível alterar a quantidade de jobs para serem escalonados passando o 
 o argumento abaixo para a aplicação:
 ```bash
-./target/demo 8  # Will run 8 jobs instead of the default.
+./target/demo 8  # Escalonará 8 jobs ao invés do padrão.
 ```
 

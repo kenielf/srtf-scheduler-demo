@@ -60,6 +60,6 @@ To run it, use `./target/demo`.
 It is possible to override the amount of jobs to schedule by passing it to the
 application as shown below:
 ```bash
-./target/demo 8  # Will run 8 jobs instead of the default.
+./target/demo 8  # Will schedule 8 jobs instead of the default.
 ```
 
