@@ -25,6 +25,7 @@ https://learn.microsoft.com/pt-br/windows/console/console-virtual-terminal-seque
 https://gitforwindows.org/index.html (GitBash)
 
 
+### Manual
 Clone o repositório e use o `gcc` para buildar o projeto:
 ```bash
 git clone 'https://github.com/kenielf/srtf-scheduler-demo.git'
@@ -32,6 +33,32 @@ cd srtf-scheduler-demo
 gcc -Wall -Wextra -Wpedantic -Wshadow -o main src/*.c src/*.h
 ```
 
-## Execução
-Use `./main` em plataformas unix-like ou simplesmente `main` no Windows.
+---
+Para executar, use `./main` em plataformas unix-like ou simplesmente `main` no 
+Windows.
+
+### Makefile
+> [!NOTE]
+> Para o intuito de buildar no linux somente no linux, podendo ter compilação 
+> cruzada para o windows com a receita correta, requerindo 
+> `x86_64-w64-mingw32-gcc`, que irá buildar o binário `.exe` em conjunto com
+> o `elf`.
+
+Clone o repositório da mesma maneira, porém utilize o `make` para preparar o 
+binário:
+```bash
+git clone 'https://github.com/kenielf/srtf-scheduler-demo.git'
+cd srtf-scheduler-demo
+make build
+```
+
+---
+Para executar, use `./target/demo`.
+
+## Argumentos
+É possível alterar a quantidade de jobs para serem escalonados passando o 
+o argumento abaixo para a aplicação:
+```bash
+./target/demo 8  # Will run 8 jobs instead of the default.
+```
 
