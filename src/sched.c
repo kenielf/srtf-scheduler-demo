@@ -1,5 +1,3 @@
-#include <stdio.h>
-#include <stdlib.h>
 #include "sched.h"
 #include "rand.h"
 #define MIN_ARRIVAL 0
@@ -35,50 +33,54 @@ job create_job() {
 }
 
 void schedule(job *jobs, int length, int *time_step, int *completed) {
-    job *cur_job;
-    job *smallest = NULL;
+    job* cur_job = &jobs[0];
+    job* smallest = cur_job;
+    job* last_stopped = cur_job;
 
-    /* job *stopped_job = NULL; */
     for (int i = 0; i < length; i++) {
-        // Define job state
+        // Set the current job to check
         cur_job = &jobs[i];
-        if (smallest == NULL) {
+
+        // Reset smallest if it is completed
+        if (smallest->state == COMPLETED) {
             smallest = cur_job;
         }
 
         // Parse job state
         if (cur_job->state == COMPLETED) {
-            /* If the job is already completed, skip it! */
+            // If the job is already completed, skip it.
             continue;
         }
 
-        if (cur_job->arrival <= *time_step ||  cur_job->arrival == 0) {
-            // Set each arrived job as queued
+        // If the job has already arrived
+        if (cur_job->arrival <= *time_step) {
+            // Set the job to queued if it is unqueued
             cur_job->state = QUEUED;
+            /* if (cur_job->state == UNQUEUED) cur_job->state = QUEUED; */
 
-            // if the job fits the scheduler criteria (shortest remaining), run it
-            if (cur_job->remaining < smallest->remaining && cur_job->remaining > 0) {
-                // Check if the job was stopped
-                if (cur_job != smallest && smallest != NULL && time_step != 0) {
-                    smallest->state = QUEUED;
-                }
+            // Check if it is the smallest
+            if (cur_job->remaining <= smallest->remaining) {
+                // Set the last stopped job
+                if (smallest->state == RUNNING) last_stopped = smallest;
 
-                // Set the new smallest job
+                // Update smallest job
                 smallest = cur_job;
-                smallest->state = RUNNING;
             }
         }
     }
 
-    // Set completion state
+    if (last_stopped != smallest && last_stopped->remaining > 0) {
+        // Set the last stopped job visible
+        last_stopped->state = STOPPED;
+    }
+
+    // Run smallest
     if (smallest->remaining > 0) {
-        if (smallest->remaining - 1 == 0) {
-            // Set smallest as completed and unset smallest
-            smallest->state = COMPLETED;
-            smallest = NULL;
-            *completed += 1;
-        }
+        smallest->state = RUNNING;
         smallest->remaining--;
+    } else {
+        smallest->state = COMPLETED;
+        *completed += 1;
     }
 
     // Increment time step;
