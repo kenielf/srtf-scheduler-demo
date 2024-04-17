@@ -62,3 +62,5 @@ o argumento abaixo para a aplicação:
 ./target/demo 8  # Escalonará 8 jobs ao invés do padrão.
 ```
 
+## Ambiente
+Você também pode definir o tempo de sleep utilizando a variável de ambiente `SLEEP_TIME`.

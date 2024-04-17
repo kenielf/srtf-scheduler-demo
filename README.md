@@ -63,3 +63,5 @@ application as shown below:
 ./target/demo 8  # Will schedule 8 jobs instead of the default.
 ```
 
+## Environment
+You can also set the sleep time using the environment variable `SLEEP_TIME`.
