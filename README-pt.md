@@ -1,10 +1,10 @@
 # Escalonamento SRTF
 ## Sobre
 Uma demonstração do algoritmo de escalonamento de 
-[Tempo Remanescente Mais Curto Primeiro] -- do inglês *(Shortest Remaining Time First)*.
+[Tempo Restante Mais Curto Primeiro] -- do inglês *(Shortest Remaining Time First)*.
 
-[Tempo Remanescente Mais Curto Primeiro]:
-https://pt.wikipedia.org/wiki/Shortest_remaining_time (Tempo Remanescente Mais Curto Primeiro)
+[Tempo Restante Mais Curto Primeiro]:
+https://pt.wikipedia.org/wiki/Shortest_remaining_time (Tempo Restante Mais Curto Primeiro)
 
 Apesar deste projeto ter sido montado para uma apresentação da matéria de 
 sistemas operacionais de uma faculdade, contribuições como *issues*, 
