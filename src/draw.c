@@ -43,7 +43,7 @@ void pheaders() {
 }
 
 void print_job(job j) {
-    char *state_color;
+    char *state_color = "00m";
     switch (j.state) {
         case COMPLETED:
             state_color = "32m";
