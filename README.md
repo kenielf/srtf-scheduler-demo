@@ -32,7 +32,7 @@ Clone the repository and use `gcc` to build the project:
 ```bash
 git clone 'https://github.com/kenielf/srtf-scheduler-demo.git'
 cd srtf-scheduler-demo
-gcc -Wall -Wextra -Wpedantic -Wshadow -o main src/*{c,h}
+gcc -Wall -Wextra -Wpedantic -Wshadow -o main src/*.c src/*.h
 ```
 
 ## Executing
