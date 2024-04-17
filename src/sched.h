@@ -15,7 +15,7 @@ typedef struct job {
     int arrival;
     int burst;
     int remaining;
-    bool completed;
+    int completed;
     job_state state;
 } job;
 

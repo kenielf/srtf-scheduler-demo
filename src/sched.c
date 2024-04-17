@@ -26,6 +26,7 @@ job create_job() {
     int burst = randrange(MIN_BURST_TIME, MAX_BURST_TIME);
     j.burst = burst;
     j.remaining = burst;
+    j.completed = -1;
     j.state = UNQUEUED;
 
     // Return job
@@ -80,6 +81,7 @@ void schedule(job *jobs, int length, int *time_step, int *completed) {
         smallest->remaining--;
     } else {
         smallest->state = COMPLETED;
+        smallest->completed = *time_step - 1;
         *completed += 1;
     }
 
