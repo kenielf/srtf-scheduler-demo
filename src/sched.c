@@ -36,7 +36,7 @@ job create_job() {
 
 void schedule(job *jobs, int length, int *time_step, int *completed) {
     job *cur_job;
-    job *smallest;
+    job *smallest = NULL;
 
     /* job *stopped_job = NULL; */
     for (int i = 0; i < length; i++) {
@@ -73,7 +73,9 @@ void schedule(job *jobs, int length, int *time_step, int *completed) {
     // Set completion state
     if (smallest->remaining > 0) {
         if (smallest->remaining - 1 == 0) {
+            // Set smallest as completed and unset smallest
             smallest->state = COMPLETED;
+            smallest = NULL;
             *completed += 1;
         }
         smallest->remaining--;
