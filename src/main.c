@@ -5,7 +5,7 @@
 #include "sched.h"
 #include "draw.h"
 #define DEFAULT_SIZE 10
-#define SLEEP_TIME 1
+#define DEFAULT_SLEEP_TIME 5
 
 /* int main(int argc, char *argv[]) { */
 int main(int argc, char* argv[]) {
@@ -16,6 +16,20 @@ int main(int argc, char* argv[]) {
     int size = DEFAULT_SIZE;
     if (argc > 1) {
         size = atoi(argv[1]);
+    }
+
+    // Define if timescale will run quickly or slowly
+    char* env = getenv("SLEEP_TIME");
+    int sleep_time;
+    if (env != NULL) {
+        sleep_time = atoi(env);
+        if (sleep_time <= 0) {
+            // Safety check for conversion failure.
+            printf("\x1b[31m[ERROR]\x1b[00m %s\n", "Invalid sleep time");
+            exit(1);
+        }
+    } else {
+        sleep_time = DEFAULT_SLEEP_TIME;
     }
 
     // Create random jobs and sort by arrival time;
@@ -53,7 +67,7 @@ int main(int argc, char* argv[]) {
         printf("--------------------\n");
 
         // Sleep
-        if (completed < size) sleep(SLEEP_TIME);
+        if (completed < size) sleep(sleep_time);
     }
 
     // Free memory
