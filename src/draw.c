@@ -1,14 +1,16 @@
 #include <stdio.h>
 #include <time.h>
 #include "sched.h"
+#ifdef _WIN32
+#include <stdlib.h>
+#define CLEAR() system("cls")
+#else
+#define CLEAR() printf("\x1b[2J\x1b[H"); /* ANSI Black magic */
+#endif
 
 void clear() {
     // Platform dependent clear commands
-#ifdef _WIN32
-    system("cls");
-#else
-    printf("\x1b[2J\x1b[H"); /* ANSI Black magic */
-#endif
+    CLEAR();
 }
 
 void gettime(int timestep){
