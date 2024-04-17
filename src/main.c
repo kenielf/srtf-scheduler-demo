@@ -5,7 +5,7 @@
 #include "sched.h"
 #include "draw.h"
 #define DEFAULT_SIZE 10
-#define DEFAULT_SLEEP_TIME 5
+#define DEFAULT_SLEEP_TIME 1
 
 /* int main(int argc, char *argv[]) { */
 int main(int argc, char* argv[]) {
